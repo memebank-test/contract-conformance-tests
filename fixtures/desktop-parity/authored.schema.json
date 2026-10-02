@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://memebank.github.io/contracts/desktop-parity/v1/authored.schema.json",
+  "$defs": {
+    "AppSurface": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "AppSurface",
+      "type": "string",
+      "enum": ["mobile", "flutter_desktop", "rust_desktop"]
+    },
+    "AppCapability": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "AppCapability",
+      "type": "string",
+      "enum": [
+        "authentication",
+        "deep_links",
+        "secure_storage",
+        "clipboard_import",
+        "file_import_export",
+        "ocr_import",
+        "media_library",
+        "offline_cache",
+        "background_sync",
+        "notifications",
+        "telemetry",
+        "accessibility",
+        "application_updates"
+      ]
+    },
+    "DesktopParityContract": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "DesktopParityContract",
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1
+        },
+        "flutter_counterpart": {
+          "type": "string"
+        },
+        "legacy_rust_counterpart": {
+          "type": "string"
+        },
+        "surfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "AppSurface"
+          }
+        },
+        "required_capabilities": {
+          "type": "array",
+          "items": {
+            "$ref": "AppCapability"
+          }
+        }
+      },
+      "required": [
+        "version",
+        "flutter_counterpart",
+        "legacy_rust_counterpart",
+        "surfaces",
+        "required_capabilities"
+      ],
+      "unevaluatedProperties": false
+    }
+  }
+}
